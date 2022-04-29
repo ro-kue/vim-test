@@ -3,12 +3,12 @@ if !exists('g:test#python#pytest#file_pattern')
 endif
 
 function! test#python#pytest#test_file(file) abort
-  if fnamemodify(a:file, ':t') =~# g:test#python#pytest#file_pattern
+  if fnamemodify(a:file, ':t') =~# g:test#python#pytest#file_pattern || fnamemodify(a:file, ':.') =~# = 'test/'
     if exists('g:test#python#runner')
       return g:test#python#runner ==# 'pytest'
     else
       return executable("pytest") || executable("py.test")
-    endif
+	endif
   endif
 endfunction
 
